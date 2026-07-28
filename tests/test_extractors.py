@@ -1,9 +1,11 @@
 import pytest
 
-from ddr.powerbi import BimParseError, extract as extract_bim
+from ddr.powerbi import BimParseError
+from ddr.powerbi import extract as extract_bim
 from ddr.refs import ColumnRef
 from ddr.simulator import make_bim, make_twb
-from ddr.tableau import TwbParseError, extract as extract_twb
+from ddr.tableau import TwbParseError
+from ddr.tableau import extract as extract_twb
 
 CR = ColumnRef.make
 

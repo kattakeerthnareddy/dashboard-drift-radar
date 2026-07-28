@@ -6,8 +6,8 @@ from typer.testing import CliRunner
 from ddr.cli import app
 from ddr.differ import check
 from ddr.refs import ColumnRef, DashboardRefs
-from ddr.warehouse import SchemaLoadError, from_json
 from ddr.simulator import schema_rows, write_demo
+from ddr.warehouse import SchemaLoadError, from_json
 
 runner = CliRunner()
 CR = ColumnRef.make
