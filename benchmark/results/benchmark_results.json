@@ -1,0 +1,29 @@
+{
+  "host": {
+    "python": "3.11.15",
+    "cpus": 2
+  },
+  "scales": [
+    {
+      "dashboards": 50,
+      "parse_s": 0.008,
+      "diff_s": 0.001,
+      "total_s": 0.009,
+      "broken_found": 50
+    },
+    {
+      "dashboards": 200,
+      "parse_s": 0.029,
+      "diff_s": 0.003,
+      "total_s": 0.032,
+      "broken_found": 200
+    },
+    {
+      "dashboards": 1000,
+      "parse_s": 0.15,
+      "diff_s": 0.012,
+      "total_s": 0.162,
+      "broken_found": 1000
+    }
+  ]
+}
