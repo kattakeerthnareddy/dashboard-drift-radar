@@ -55,7 +55,17 @@ def _rename_candidates(
     added = [r for r in new_schema if r.table == missing.table and r not in old_schema]
     best, best_score = None, 0.0
     for cand in added:
-        score = SequenceMatcher(None, missing.column, cand.column).ratio()
+        # Containment beats edit similarity for renames: prefix/suffix
+        # additions (region -> customer_region) are the most common rename
+        # pattern and plain SequenceMatcher scores them below threshold
+        # (0.571 for that pair). A containment match with >= 4 chars of
+        # shared stem is treated as near-certain.
+        contained = (
+            (missing.column in cand.column or cand.column in missing.column)
+            and min(len(missing.column), len(cand.column)) >= 4
+        )
+        score = 0.9 if contained else SequenceMatcher(
+            None, missing.column, cand.column).ratio()
         if score > best_score:
             best, best_score = cand, score
     if best is not None and best_score >= 0.6:
