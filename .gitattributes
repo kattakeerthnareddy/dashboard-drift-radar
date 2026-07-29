@@ -1,0 +1,5 @@
+# Count SQL in the language statistics (linguist classifies SQL as data by default)
+*.sql linguist-detectable=true
+
+# Generated benchmark artifacts: keep them out of language stats and diff rendering
+benchmark/results/** linguist-generated=true
