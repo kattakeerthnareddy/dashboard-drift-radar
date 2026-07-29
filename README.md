@@ -25,11 +25,11 @@ Exit codes make it a gate: 0 safe, 1 block migration, 3 could-not-run. Wire it n
 
 ```mermaid
 flowchart LR
-    T["tableau .twb files<br/>XML relations + column maps"] --> X["extractors<br/>-> (table, column) refs, case-folded"]
+    T["tableau .twb files<br/>XML relations + column maps"] --> X["extractors<br/>emit table, column refs, case-folded"]
     P["power bi model.bim<br/>sourceColumns + DAX measure scan"] --> X
+    X --> D["blast-radius differ"]
     S1["schema snapshot: current<br/>one information_schema query"] --> D
     S2["schema snapshot: post-migration<br/>from CI database"] --> D
-    X --> D["blast-radius differ"]
     D --> R["findings per dashboard:<br/>missing-table / missing-column /<br/>type-changed / probable-rename"]
     R --> G["exit 0 SAFE / exit 1 BLOCK"]
 ```
